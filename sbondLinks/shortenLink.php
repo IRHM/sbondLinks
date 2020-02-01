@@ -29,8 +29,21 @@
     // Get Link To Shorten from form
     $linkToShorten = $linkArgs['link'];
 
+    // Add http if not already
+    $http     = 'http://';
+    $https    = 'https://';
+    $hasHttp  = strpos($linkToShorten, $http);
+    $hasHttps = strpos($linkToShorten, $https);
+
+    if($hasHttp !== false || $hasHttps !== false){
+      $linkToShorten = "$linkToShorten";
+    }
+    else{
+      $linkToShorten = "http://$linkToShorten";
+    }
+
     // SQL Query
-    $sql = "SELECT link_key, link FROM links where link=?";
+    $sql = "SELECT link_key, link FROM links where link=? LIMIT 1";
 
     // Execute SQL Query
     $stmt = mysqli_stmt_init($conn);
@@ -60,18 +73,6 @@
       // if link hasn't been shortened before then run this code (to shorten):
 
       $link_key = generateRandomString(); // generate random string for the key
-
-      $http     = 'http://';
-      $https    = 'https://';
-      $hasHttp  = strpos($linkToShorten, $http);
-      $hasHttps = strpos($linkToShorten, $https);
-
-      if($hasHttp !== false || $hasHttps !==false){
-        $linkToShorten = "$linkToShorten";
-      }
-      else{
-        $linkToShorten = "http://$linkToShorten";
-      }
 
       // check and set expiry date
       if(isset($linkArgs['expiryDate']) && !empty($linkArgs['expiryDate'])){

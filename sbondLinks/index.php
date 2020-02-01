@@ -1,35 +1,17 @@
 <?php
-  $linkGenerated = "";
-  $copyIcon = "";
   if(isset($_GET['k']) && $link_key = $_GET['k']){
     // use link_key to get link and then redirect to the link
     require('dbConnect.php');
     $sql = "SELECT link FROM links WHERE link_key='$link_key'";
     $result = mysqli_query($conn, $sql);
 
-    while($row = mysqli_fetch_array($result))
-    {
+    while($row = mysqli_fetch_array($result)){
       $link = $row['link'];
     }
-    header("location: $link",TRUE,301);
-    exit; //dont run code after redirect
-  }
 
-  if(isset($_GET['l']) && $link_key = $_GET['l']){
-    $linkGenerated = "l.sbond.co/?k=$link_key";
-    $copyIcon = "<svg aria-hidden='true' focusable='false'
-      data-prefix='fas' data-icon='copy'
-      role='img' xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 448 512' width='15px' height='15px'>
-      <path fill='currentColor'
-      d='M320 448v40c0 13.255-10.745 24-24 24H24c-13.255
-      0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0
-      30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24
-      10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255
-      0 24-10.745 24-24V128H344c-13.2
-      0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059
-      0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z'></path>
-    </svg>";
+    // Redirect to link
+    header("location: $link", TRUE, 301);
+    exit;
   }
 ?>
 
@@ -50,8 +32,24 @@
 
       <div class="shortenLink">
         <div class="shortenLinkForm">
-          <span id="linkGenerated" class="hidden" data-clipboard-target="#linkGenerated">
-          </span><br>
+          <div class="linkGeneratedContainer">
+            <span id="linkGenerated" class="hidden"
+                  data-clipboard-target="#linkGenerated">
+            </span>
+            <svg id="linkSvg" class='hidden' aria-hidden='true' focusable='false'
+              data-prefix='fas' data-icon='copy'
+              role='img' xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 448 512' width='15px' height='15px'>
+              <path fill='currentColor'
+              d='M320 448v40c0 13.255-10.745 24-24 24H24c-13.255
+              0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0
+              30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24
+              10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255
+              0 24-10.745 24-24V128H344c-13.2
+              0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059
+              0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z'></path>
+            </svg>
+          </div>
           <div class="formContainer">
             <input id="linkInput" class="boxShadow" type="text" placeholder="Enter Link" autocomplete="off"
               name="linkToShorten" required>

@@ -20,15 +20,18 @@ async function getShortened(){
   var link          = document.getElementById("linkInput").value;
   var expiry        = document.getElementById("expiryDateSelect").value;
   var linkGenerated = document.getElementById("linkGenerated");
+  var linkSvg       = document.getElementById("linkSvg");
 
   // Get link
   var linkKey       = await shortenLink(link, expiry);
   linkKey           = linkKey['linkKey'];
   var shortenedLink = "l.sbond.co/?k=" + linkKey;
 
-  // Display link
+  // Display link and svg
+  linkGenerated.innerHTML = "";
   linkGenerated.classList.remove("hidden");
-  linkGenerated.innerHTML = shortenedLink;
+  linkSvg.classList.remove("hidden");
+  linkGenerated.insertAdjacentHTML('afterbegin', shortenedLink);
 
   pageLoading(false);
 }
