@@ -28,7 +28,6 @@
   if(isset($linkArgs['link'])){
     // Get Link To Shorten from form
     $linkToShorten = $linkArgs['link'];
-    $expiryDate = $linkArgs['expiry'];
 
     // SQL Query
     $sql = "SELECT link_key, link FROM links where link=?";
@@ -55,7 +54,6 @@
       *  has already been shortened before.
       *  If it has.. just get the same url & key.
       */
-      // header("location: index.php?l=$link_key");
       echo json_encode(array('linkKey' => $link_key));
     }
     else{
@@ -76,8 +74,8 @@
       }
 
       // check and set expiry date
-      if(isset($expiryDate) && !empty($expiryDate)){
-        // $expiryDate = $linkArgs['expiryDate'];
+      if(isset($linkArgs['expiryDate']) && !empty($linkArgs['expiryDate'])){
+        $expiryDate = $linkArgs['expiryDate'];
 
         switch($expiryDate){
           case 'A Day':
@@ -97,6 +95,10 @@
             break;
         }
       }
+      else{
+        // Set expire to 'A Week' encase expiryDate isn't set
+        $expire = "A Week";
+      }
 
       // Insert link_key and link into table
       $sql = "INSERT INTO links (link_key, link, expire) value(?, ?, ?)";
@@ -112,7 +114,6 @@
       }
 
       // Return links key
-      // header("location: index.php?l=$link_key");
       echo json_encode(array('linkKey' => $link_key));
     }
 
