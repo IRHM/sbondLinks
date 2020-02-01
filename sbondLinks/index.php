@@ -76,7 +76,7 @@
     <script type="text/javascript">
       var clipboard = new ClipboardJS('#linkGenerated');
       clipboard.on('success', function(e) {
-          console.log(e);
+          // console.log(e);
       });
       clipboard.on('error', function(e) {
           console.log(e);
