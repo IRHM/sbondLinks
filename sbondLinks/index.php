@@ -16,7 +16,7 @@
   }
 
   if(isset($_GET['l']) && $link_key = $_GET['l']){
-    $linkGenerated = "l.sbond.ml/?k=$link_key";
+    $linkGenerated = "l.sbond.co/?k=$link_key";
     $copyIcon = "<svg aria-hidden='true' focusable='false'
       data-prefix='fas' data-icon='copy'
       role='img' xmlns='http://www.w3.org/2000/svg'
@@ -40,25 +40,24 @@
   </head>
 
   <body>
-    <script src="js/loading.js"></script>
+    <script type="text/javascript" src="js/loading.js"></script>
     <div id="loadingScreen"></div>
 
     <center>
-
-      <div class=" logoBackground">
+      <div class="logoBackground">
         <h1 class="logo">sbondLinks</h1>
       </div>
 
       <div class="shortenLink">
-        <form method="post" action="shortenLink.php" class="shortenLinkForm">
+        <div class="shortenLinkForm"><!--  method="post" action="shortenLink.php"  -->
           <span id="linkGenerated" data-clipboard-target="#linkGenerated">
             <?php echo $linkGenerated ?> <?php echo $copyIcon ?>
           </span><br>
           <div class="formContainer">
-            <input class="boxShadow" type="text" placeholder="Enter Link" autocomplete="off"
+            <input id="linkInput" class="boxShadow" type="text" placeholder="Enter Link" autocomplete="off"
               name="linkToShorten" required>
 
-            <select class="boxShadow" name="expiryDate" required>
+            <select id="expiryDateSelect" class="boxShadow" name="expiryDate" required>
               <option class="" value="" disabled selected invalid>Select Expiry Date ⇣</option>
               <option value="A Day">A Day</option>
               <option value="A Week">A Week</option>
@@ -66,17 +65,18 @@
               <option value="Never">Never</option>
             </select>
 
-            <button class="boxShadow" name="submit" type="submit">
+            <button onclick="shortenLink();"><!-- class="boxShadow" name="submit" type="submit"> -->
               Shorten
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </center>
 
+    <script type="text/javascript" src="js/main.js"></script>
     <!-- Clipboard.js -->
-    <script src="js/clipboard.min.js"></script>
-    <script>
+    <script type="text/javascript" src="js/clipboard.min.js"></script>
+    <script type="text/javascript">
       var clipboard = new ClipboardJS('#linkGenerated');
       clipboard.on('success', function(e) {
           console.log(e);

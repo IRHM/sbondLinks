@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <title>sbondLinks - URL Shortener</title>
-<link rel="shortcut icon" href="https://ul.sbond.ml/i/hive.ico">
-<link rel="stylesheet" href="css/main.css?v=5.5">
+<link rel="shortcut icon" href="https://ul.sbond.co/i/hive.ico">
+<link rel="stylesheet" href="https://l.sbond.co/css/main.css?v=1">
 
 <!-- Meta Tags -->
 <meta charset="UTF-8">

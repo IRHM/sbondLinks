@@ -1,19 +1,34 @@
 <?php
   require('dbConnect.php');
 
-  function generateRandomString($length = 5) {
+  // Get JSON from POST request
+  $JSON = @file_get_contents('php://input');
+
+  // If no JSON then exit
+  if(!is_object(json_decode($JSON))){
+    echo json_encode(array('error' => 'invalid request'));
+    exit();
+  }
+
+  // Decode JSON
+  $linkArgs = json_decode($JSON, true);
+
+  function generateRandomString($length = 5){
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+
+    for($i = 0; $i < $length; $i++){
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
+
     return $randomString;
   }
 
-  if (isset($_POST['submit'])) {
+  if(isset($linkArgs['link'])){
     // Get Link To Shorten from form
-    $linkToShorten = $_POST['linkToShorten'];
+    $linkToShorten = $linkArgs['link'];
+    $expiryDate = $linkArgs['expiry'];
 
     // SQL Query
     $sql = "SELECT link_key, link FROM links where link=?";
@@ -21,7 +36,7 @@
     // Execute SQL Query
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-      echo 'SQL statement failed.';
+      echo json_encode(array('error' => 'backend error'));
     }
     else{
       mysqli_stmt_bind_param($stmt, "s", $linkToShorten);
@@ -40,7 +55,8 @@
       *  has already been shortened before.
       *  If it has.. just get the same url & key.
       */
-      header("location: index.php?l=$link_key");
+      // header("location: index.php?l=$link_key");
+      echo json_encode(array('linkKey' => $link_key));
     }
     else{
       // if link hasn't been shortened before then run this code (to shorten):
@@ -52,33 +68,34 @@
       $hasHttp  = strpos($linkToShorten, $http);
       $hasHttps = strpos($linkToShorten, $https);
 
-      if ($hasHttp !== false || $hasHttps !==false) {
-           $linkToShorten = "$linkToShorten";
+      if($hasHttp !== false || $hasHttps !==false){
+        $linkToShorten = "$linkToShorten";
       }
-      else {
-           $linkToShorten = "http://$linkToShorten";
+      else{
+        $linkToShorten = "http://$linkToShorten";
       }
 
       // check and set expiry date
-      if(isset($_POST['expiryDate'])){
-          $expiryDate = $_POST['expiryDate'];
-          switch ($expiryDate) {
-              case 'A Day':
-                $expire = "A Day";
-                break;
-              case 'A Week':
-                $expire = "A Week";
-                break;
-              case 'A Month':
-                $expire = "A Month";
-                break;
-              case 'Never':
-                $expire = "Never";
-                break;
-              default:
-                $expire = "A Week";
-                break;
-          }
+      if(isset($expiryDate) && !empty($expiryDate)){
+        // $expiryDate = $linkArgs['expiryDate'];
+
+        switch($expiryDate){
+          case 'A Day':
+            $expire = "A Day";
+            break;
+          case 'A Week':
+            $expire = "A Week";
+            break;
+          case 'A Month':
+            $expire = "A Month";
+            break;
+          case 'Never':
+            $expire = "Never";
+            break;
+          default:
+            $expire = "A Week";
+            break;
+        }
       }
 
       // Insert link_key and link into table
@@ -87,15 +104,18 @@
       // execute sql query
       $stmt = mysqli_stmt_init($conn);
       if(!mysqli_stmt_prepare($stmt, $sql)){
-        echo 'There was an error shortening the link.';
+        echo json_encode(array('error' => 'backend error'));
       }
       else{
         mysqli_stmt_bind_param($stmt, "sss", $link_key, $linkToShorten, $expire);
         mysqli_stmt_execute($stmt);
       }
-      // go to index.php with shortened link
-      header("location: index.php?l=$link_key");
+
+      // Return links key
+      // header("location: index.php?l=$link_key");
+      echo json_encode(array('linkKey' => $link_key));
     }
+
     // Close Connection
     mysqli_close($conn);
   }
