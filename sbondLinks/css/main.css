@@ -132,6 +132,10 @@ select:valid { color: black; }
   transition: box-shadow .25 ease-in-out;
 }
 
+.hidden{
+  display: none;
+}
+
 /*---- Loading ----*/
 
 #loadingScreen {

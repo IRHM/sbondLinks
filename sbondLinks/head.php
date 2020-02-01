@@ -9,6 +9,6 @@
 <meta name="author" content="sbondo1234">
 <meta name="description" content="Free URL Shortener">
 <meta name="keywords" content="URL,Shortener,sbondLinks,link">
-<meta name="revised" content="Wednesday, September 18th, 2019" />
+<meta name="revised" content="Saturday, February 1th, 2020" />
 <meta property="og:locale" content="en-gb">
 <meta name="og:description" content="Free URL Shortener"/>

@@ -49,9 +49,8 @@
       </div>
 
       <div class="shortenLink">
-        <div class="shortenLinkForm"><!--  method="post" action="shortenLink.php"  -->
-          <span id="linkGenerated" data-clipboard-target="#linkGenerated">
-            <?php echo $linkGenerated ?> <?php echo $copyIcon ?>
+        <div class="shortenLinkForm">
+          <span id="linkGenerated" class="hidden" data-clipboard-target="#linkGenerated">
           </span><br>
           <div class="formContainer">
             <input id="linkInput" class="boxShadow" type="text" placeholder="Enter Link" autocomplete="off"
@@ -65,7 +64,7 @@
               <option value="Never">Never</option>
             </select>
 
-            <button onclick="shortenLink();"><!-- class="boxShadow" name="submit" type="submit"> -->
+            <button onclick="getShortened();">
               Shorten
             </button>
           </div>

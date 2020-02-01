@@ -1,30 +1,55 @@
-// fadeOut then display: none
-function fadeOut(e){
-  e.style.opacity = 1;
+// fade out
+function fadeOut(el){
+  el.style.opacity = 1;
 
-  (function fade() {
-    if ((e.style.opacity -= .1) < 0) {
-      e.style.display = "none";
+  (function fade(){
+    if ((el.style.opacity -= .1) < 0) {
+      el.style.display = "none";
     }
-    else {
+    else{
       requestAnimationFrame(fade);
     }
   })();
 }
 
+// fade in
+function fadeIn(el, display){
+  el.style.opacity = 0;
+
+  (function fade() {
+    var val = parseFloat(el.style.opacity);
+    if (!((val += .1) > 1)){
+      el.style.opacity = val;
+      requestAnimationFrame(fade);
+    }
+    else{
+      el.style.display = display;
+    }
+  })();
+}
+
 // Wait for window load
-function winLoad(callback) {
-  if (document.readyState === 'complete') {
+function winLoad(callback){
+  if(document.readyState === 'complete'){
     callback();
   }
-  else {
+  else{
     window.addEventListener("load", callback);
   }
 }
 
 // Add opacity class when loaded
-winLoad(function() {
-  // console.log('Window is loaded');
-  var e = document.getElementById("loadingScreen");
-  fadeOut(e);
+winLoad(function(){
+  pageLoading(false);
 });
+
+function pageLoading(loading){
+  var loadingScreen = document.getElementById("loadingScreen");
+
+  if(loading){
+    fadeIn(loadingScreen, 'flex');
+  }
+  else{
+    fadeOut(loadingScreen);
+  }
+}
