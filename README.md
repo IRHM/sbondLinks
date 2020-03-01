@@ -2,7 +2,7 @@
 
 A simple link shortening script made in PHP.
 
-Live site: [l.sbond.ml](https://l.sbond.ml)
+Live site: [l.sbond.co](https://l.sbond.co)
 
 ## Setup
 
