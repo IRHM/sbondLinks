@@ -1,3 +1,9 @@
+var clipboard = new ClipboardJS('#linkGenerated');
+
+clipboard.on('error', function(e) {
+	console.log("Could not copy: " + e);
+});
+
 async function shortenLink(link, expiry){
   // Set query
   var query = { 'link':link, 'expiry':expiry };
@@ -35,3 +41,5 @@ async function getShortened(){
 
   pageLoading(false);
 }
+
+document.getElementById("shortenBtn").onclick = getShortened;

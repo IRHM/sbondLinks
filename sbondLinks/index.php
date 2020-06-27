@@ -62,7 +62,7 @@
               <option value="Never">Never</option>
             </select>
 
-            <button onclick="getShortened();">
+            <button id="shortenBtn">
               Shorten
             </button>
           </div>
@@ -70,18 +70,7 @@
       </div>
     </center>
 
-    <script type="text/javascript" src="js/main.js"></script>
-    <!-- Clipboard.js -->
-    <script type="text/javascript" src="js/clipboard.min.js"></script>
-    <script type="text/javascript">
-      var clipboard = new ClipboardJS('#linkGenerated');
-      clipboard.on('success', function(e) {
-          // console.log(e);
-      });
-      clipboard.on('error', function(e) {
-          console.log(e);
-      });
-    </script>
-
+		<script type="text/javascript" src="js/clipboard.min.js"></script>
+    <script type="text/javascript" src="js/main.js?v=2"></script>
   </body>
 </html>
