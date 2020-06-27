@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect('localhost', 'sbondLinks', 'MuWELum4veQ721GI74GAbAJE2iC8xe', "sbondLinks");
+  $conn = mysqli_connect('ip', 'user', 'pass', "db");
   if (!$conn){
       die("Database Connection Failed" . mysqli_error($conn));
   }
