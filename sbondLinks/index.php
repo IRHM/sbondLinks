@@ -52,10 +52,10 @@
           </div>
           <div class="formContainer">
             <input id="linkInput" class="boxShadow" type="text" placeholder="Enter Link" autocomplete="off"
-              name="linkToShorten" required>
+              name="linkToShorten">
 
             <select id="expiryDateSelect" class="boxShadow" name="expiryDate" required>
-              <option class="" value="" disabled selected invalid>Select Expiry Date ⇣</option>
+              <option value="" disabled selected invalid>Expiry &#x25BE;</option>
               <option value="A Day">A Day</option>
               <option value="A Week">A Week</option>
               <option value="A Month">A Month</option>
