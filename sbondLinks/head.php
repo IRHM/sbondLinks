@@ -1,10 +1,10 @@
-<meta charset="utf-8">
 <title>sbondLinks - URL Shortener</title>
-<link rel="shortcut icon" href="https://ul.sbond.co/i/hive.ico">
-<link rel="stylesheet" href="https://l.sbond.co/css/main.css?v=1">
+<link rel="shortcut icon" href="/img/icon.png">
+<link rel="shortcut icon" href="/img/icon.svg">
+<link rel="stylesheet" href="/css/main.css?v=1">
 
 <!-- Meta Tags -->
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="sbondo1234">
 <meta name="description" content="Free URL Shortener">

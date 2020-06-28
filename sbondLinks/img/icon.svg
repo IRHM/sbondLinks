@@ -1,0 +1,23 @@
+<svg width="96" height="96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="96" height="96" rx="48" fill="url(#paint0_radial)"/>
+  <g filter="url(#filter0_d)" fill="#fff">
+    <path d="M42.1376 65.9116l-7.9978 7.8708c-3.3158 3.2632-8.6854 3.2632-11.9983.0007-3.3136-3.261-3.3136-8.5459-.0007-11.8063l15.9985-15.7445c3.3129-3.2605 8.683-3.2605 11.996 0 1.1044 1.0869 2.8951 1.0869 3.9995 0s1.1044-2.8492 0-3.936c-5.5219-5.4343-14.4731-5.4343-19.995 0L18.1414 58.0407c-5.5219 5.4342-5.5219 14.2434 0 19.6776 5.5213 5.4372 14.4732 5.4372 19.998 0l7.9978-7.8708c1.1045-1.0869 1.1045-2.8492 0-3.9361-1.1044-1.0869-2.8952-1.0867-3.9996.0002z"/>
+    <path d="M77.7295 19.0757c-5.5219-5.4343-14.4761-5.4343-19.998 0l-9.5956 9.4433c-1.1045 1.0869-1.1045 2.8492 0 3.9361 1.1044 1.0868 2.8951 1.0868 3.9995 0l9.5956-9.4434c3.313-3.2605 8.6859-3.2605 11.999 0 3.3129 3.2604 3.3129 8.5453 0 11.8056L56.1337 52.1344c-3.3131 3.2605-8.6831 3.2605-11.996 0-1.1044-1.0869-2.8951-1.0869-3.9996 0-1.1044 1.0869-1.1044 2.8492 0 3.9361 5.5219 5.4342 14.4732 5.4342 19.9951 0l17.5963-17.317c5.5219-5.4343 5.5219-14.2436 0-19.6778z"/>
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(62.49997 -67.49997 67.49997 62.49997 16 81)">
+      <stop stop-color="#844242"/>
+      <stop offset=".515625" stop-color="#9B3B3B"/>
+      <stop offset="1" stop-color="#BF3939"/>
+    </radialGradient>
+    <filter id="filter0_d" x="10" y="15" width="75.8709" height="74.7962" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+</svg>

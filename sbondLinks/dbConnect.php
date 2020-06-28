@@ -1,6 +1,7 @@
 <?php
-  $conn = mysqli_connect('ip', 'user', 'pass', "db");
+  $conn = mysqli_connect('ip', 'user', 'pass', 'db');
+	
   if (!$conn){
-      die("Database Connection Failed" . mysqli_error($conn));
+      die("Database Connection Failed");
   }
 ?>
