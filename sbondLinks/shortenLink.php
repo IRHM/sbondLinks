@@ -29,7 +29,7 @@
     // Get Link To Shorten from form
     $linkToShorten = $linkArgs['link'];
 
-    // Add http if not already
+    // Add http:// if not already
     $http     = 'http://';
     $https    = 'https://';
     $hasHttp  = strpos($linkToShorten, $http);
@@ -41,9 +41,36 @@
     else{
       $linkToShorten = "http://$linkToShorten";
     }
+		
+		// check and set expiry date
+      if(isset($linkArgs['expiry']) && !empty($linkArgs['expiry'])){
+        $expiryDate = $linkArgs['expiry'];
+
+        switch($expiryDate){
+          case 'A Day':
+            $expire = "A Day";
+            break;
+          case 'A Week':
+            $expire = "A Week";
+            break;
+          case 'A Month':
+            $expire = "A Month";
+            break;
+          case 'Never':
+            $expire = "Never";
+            break;
+          default:
+            $expire = "A Week";
+            break;
+        }
+      }
+      else{
+        // Set expire to 'A Week' encase expiry isn't set
+        $expire = "A Week";
+      }
 
     // SQL Query
-    $sql = "SELECT link_key, link FROM links where link=? LIMIT 1";
+    $sql = "SELECT link_key, link FROM links where link=? AND expire=? LIMIT 1";
 
     // Execute SQL Query
     $stmt = mysqli_stmt_init($conn);
@@ -51,7 +78,7 @@
       echo json_encode(array('error' => 'backend error'));
     }
     else{
-      mysqli_stmt_bind_param($stmt, "s", $linkToShorten);
+      mysqli_stmt_bind_param($stmt, "ss", $linkToShorten, $expire);
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
 
@@ -73,33 +100,6 @@
       // if link hasn't been shortened before then run this code (to shorten):
 
       $link_key = generateRandomString(); // generate random string for the key
-
-      // check and set expiry date
-      if(isset($linkArgs['expiryDate']) && !empty($linkArgs['expiryDate'])){
-        $expiryDate = $linkArgs['expiryDate'];
-
-        switch($expiryDate){
-          case 'A Day':
-            $expire = "A Day";
-            break;
-          case 'A Week':
-            $expire = "A Week";
-            break;
-          case 'A Month':
-            $expire = "A Month";
-            break;
-          case 'Never':
-            $expire = "Never";
-            break;
-          default:
-            $expire = "A Week";
-            break;
-        }
-      }
-      else{
-        // Set expire to 'A Week' encase expiryDate isn't set
-        $expire = "A Week";
-      }
 
       // Insert link_key and link into table
       $sql = "INSERT INTO links (link_key, link, expire) value(?, ?, ?)";
