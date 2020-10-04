@@ -69,8 +69,5 @@
         </div>
       </div>
     </center>
-
-		<script type="text/javascript" src="js/clipboard.min.js"></script>
-    <script type="text/javascript" src="js/main.js?v=2"></script>
   </body>
 </html>
