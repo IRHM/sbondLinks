@@ -11,7 +11,7 @@ async function shortenLink(link, expiry) {
   // Set query
   let query = { 'link':link, 'expiry':expiry };
 
-  let response = await fetch('https://l.sbond.co/shortenLink.php', {
+  let response = await fetch('/shortenLink.php', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -64,7 +64,7 @@ function validateForm(link) {
 }
 
 async function getShortened() {
-  //pageLoading(true);
+  linkLoading(true);
 
   // Get form info
   let link          = linkInput.value;
@@ -88,7 +88,7 @@ async function getShortened() {
 		linkGenerated.insertAdjacentHTML('afterbegin', shortenedLink);
 	}
 
-  //pageLoading(false);
+  linkLoading(false);
 }
 
 document.getElementById("shortenBtn").onclick = getShortened;
