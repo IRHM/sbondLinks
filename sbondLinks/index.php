@@ -1,7 +1,12 @@
 <?php
+$notice = "";
+
 if (isset($_GET['k']) && $link_key = $_GET['k']) {
   // use link_key to get link and then redirect to the link
   require('dbConnect.php');
+
+  // Declare vars that may not be later, but are needed
+  $link = null;
 
   $query = "SELECT link FROM links WHERE link_key=?";
   $stmt = mysqli_stmt_init($conn);
@@ -20,9 +25,14 @@ if (isset($_GET['k']) && $link_key = $_GET['k']) {
     }
   }
 
-  // Redirect to link
-  header("location: $link", TRUE, 301);
-  exit;
+  // Only redirect if $link is a valid url
+  if (filter_var($link, FILTER_VALIDATE_URL)) {
+    header("location: $link", TRUE, 301);
+    exit;
+  }
+  else {
+    $notice = "SHORTENED URL IS INVALID.";
+  }
 }
 ?>
 
@@ -43,7 +53,7 @@ if (isset($_GET['k']) && $link_key = $_GET['k']) {
       <div class="shortenLink">
         <div class="shortenLinkForm">
           <div class="linkGeneratedContainer">
-            <span id="linkGenerated" class="hidden" data-clipboard-target="#linkGenerated"></span>
+            <span id="linkGenerated" class="" data-clipboard-target="#linkGenerated"><?= $notice ?></span>
             <svg id="linkSvg" class='hidden' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='copy' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='15px' height='15px'>
               <path fill='currentColor' d='M320 448v40c0 13.255-10.745 24-24 24H24c-13.255
                 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0

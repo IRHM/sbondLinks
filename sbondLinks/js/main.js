@@ -64,6 +64,14 @@ function validateForm(link) {
 }
 
 async function getShortened() {
+  // Elements
+  let linkGenerated = document.getElementById("linkGenerated");
+  let linkSvg       = document.getElementById("linkSvg");
+
+  // Hide link related elements
+  linkGenerated.classList.add("hidden");
+  linkSvg.classList.add("hidden");
+
   linkLoading(true);
 
   // Get form info
@@ -80,8 +88,7 @@ async function getShortened() {
 		let shortenedLink = "l.sbond.co/?k=" + linkKey;
 		
 		// Display link and svg
-		let linkGenerated = document.getElementById("linkGenerated");
-		let linkSvg       = document.getElementById("linkSvg");
+		
 		linkGenerated.innerHTML = "";
 		linkGenerated.classList.remove("hidden");
 		linkSvg.classList.remove("hidden");
