@@ -3,11 +3,11 @@
 <link rel="shortcut icon" href="/img/icon.svg">
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/main.css?v=1">
+<link rel="stylesheet" href="/css/main.css?v=3">
 
 <!-- JS -->
-<script type="text/javascript" src="js/clipboard.min.js" defer></script>
-<script type="text/javascript" src="js/main.js?v=2" defer></script>
+<script type="text/javascript" src="js/clipboard.min.js?v=3" defer></script>
+<script type="text/javascript" src="js/main.js?v=3" defer></script>
 <script async defer data-domains="l.sbond.co" data-website-id="43ce078a-e63e-4983-85ef-15365fd95cee" src="https://anal.sbond.co/umami.js"></script>
 
 <!-- Meta Tags -->

@@ -42,7 +42,7 @@ if (isset($_GET["k"]) && $link_key = $_GET["k"]) {
     <?php include("head.php"); ?>
   </head>
   <body>
-    <script type="text/javascript" src="js/loading.js"></script>
+    <script type="text/javascript" src="js/loading.js?v=3"></script>
     <div id="loadingScreen"></div>
 
     <center>
