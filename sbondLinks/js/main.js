@@ -85,10 +85,9 @@ async function getShortened() {
 		// Get link
 		let linkKey       = await shortenLink(link, expiry);
 		linkKey           = linkKey['linkKey'];
-		let shortenedLink = "l.sbond.co/?k=" + linkKey;
+		let shortenedLink = "https://l.sbond.co/?k=" + linkKey;
 		
 		// Display link and svg
-		
 		linkGenerated.innerHTML = "";
 		linkGenerated.classList.remove("hidden");
 		linkSvg.classList.remove("hidden");
