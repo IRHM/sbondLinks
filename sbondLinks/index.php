@@ -78,8 +78,8 @@ if (isset($_GET["k"]) && $link_key = $_GET["k"]) {
               <option value="Never">Never</option>
             </select>
 
-            <button id="shortenBtn">
-              Shorten
+            <button id="shortenBtn" class="boxShadow">
+              SHORTEN
             </button>
           </div>
         </div>
