@@ -23,10 +23,11 @@ body {
 }
 
 .logoBackground {
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   border-radius: 0 0 85% 85% / 30%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 50px 0;
   background-image: url("https://ul.sbond.co/i/nature/misty-mountain.jpg");
   background-position: center;
   background-size: cover;
@@ -34,6 +35,11 @@ body {
 }
 
 /*---- Form ----*/
+
+.shortenLink {
+  display: flex;
+  justify-content: center;
+}
 
 .shortenLinkForm {
   width: 100%;
