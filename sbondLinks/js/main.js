@@ -66,11 +66,9 @@ function validateForm(link) {
 async function getShortened() {
   // Elements
   let linkGenerated = document.getElementById("linkGenerated");
-  let linkSvg       = document.getElementById("linkSvg");
 
   // Hide link related elements
   linkGenerated.classList.add("hidden");
-  linkSvg.classList.add("hidden");
 
   linkLoading(true);
 
@@ -90,7 +88,6 @@ async function getShortened() {
 		// Display link and svg
 		linkGenerated.innerHTML = "";
 		linkGenerated.classList.remove("hidden");
-		linkSvg.classList.remove("hidden");
 		linkGenerated.insertAdjacentHTML('afterbegin', shortenedLink);
 	}
 
@@ -98,3 +95,13 @@ async function getShortened() {
 }
 
 document.getElementById("shortenBtn").onclick = getShortened;
+
+document.getElementById("linkGenerated").addEventListener("mouseover", () => {
+  document.getElementById("clickToCopyWrapper").style.opacity = 1;
+  document.getElementById("clickToCopyWrapper").style.top = "-33px";
+});
+
+document.getElementById("linkGenerated").addEventListener("mouseout", () => {
+  document.getElementById("clickToCopyWrapper").style.opacity = 0;
+  document.getElementById("clickToCopyWrapper").style.top = "-28px";
+});

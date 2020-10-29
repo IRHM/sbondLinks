@@ -49,6 +49,9 @@ body {
 }
 
 .linkGeneratedContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 30px;
 }
 
@@ -115,8 +118,48 @@ select:valid {
   box-shadow: 0 0 5px rgba(200, 30, 30, 1);
 }
 
+/*---- Link Generated ----*/
+
 #linkGenerated {
   font-size: 22px;
+}
+
+.linkGeneratedWrapper {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  padding-right: 8px;
+}
+
+.clickToCopyWrapper {
+  position: relative;
+  top: -28px;
+  left: -55px;
+  opacity: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  transition: top 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+.linkGeneratedWrapper .clickToCopy {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  min-width: 112px;
+  padding: 3px 5px;
+  color: white;
+  background-color: black;
+}
+
+.clickToCopy::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 100%;
+	border: 5px solid transparent;
+	border-bottom: none;
+	border-top-color: black;
 }
 
 /*---- Effects ----*/
