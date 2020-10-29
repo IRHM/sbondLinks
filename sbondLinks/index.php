@@ -54,7 +54,7 @@ if (isset($_GET["k"]) && $link_key = $_GET["k"]) {
         <div class="linkGeneratedContainer">
           <div class="linkGeneratedWrapper">
             <div class="clickToCopyWrapper" id="clickToCopyWrapper">
-              <div class="clickToCopy">
+              <div id="clickToCopy" class="clickToCopy">
                 click to copy
               </div>
             </div>

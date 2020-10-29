@@ -1,15 +1,21 @@
+var linkInput = document.getElementById("linkInput");
+var expiryDateSelect = document.getElementById("expiryDateSelect");
+var clickToCopy = document.getElementById("clickToCopy");
+var clickToCopyWrapper = document.getElementById("clickToCopyWrapper");
 var clipboard = new ClipboardJS('#linkGenerated');
 
-clipboard.on('error', function(e) {
-	console.log("Could not copy: " + e);
+clipboard.on('success', () => {
+  clickToCopy.innerText = "copied!";
 });
 
-var linkInput 				= document.getElementById("linkInput");
-var expiryDateSelect  = document.getElementById("expiryDateSelect");
+clipboard.on('error', (e) => {
+  // Tell user to press control + c if copy failed
+	clickToCopy.innerText = "press ctrl+c";
+});
 
 async function shortenLink(link, expiry) {
   // Set query
-  let query = { 'link':link, 'expiry':expiry };
+  let query = { 'link': link, 'expiry': expiry };
 
   let response = await fetch('/shortenLink.php', {
     method: "POST",
@@ -73,16 +79,16 @@ async function getShortened() {
   linkLoading(true);
 
   // Get form info
-  let link          = linkInput.value;
-  let expiry        = expiryDateSelect.value;
+  let link = linkInput.value;
+  let expiry = expiryDateSelect.value;
 	
 	// Validate and handle form
 	let valid = validateForm(link);
 	
 	if (valid) {
 		// Get link
-		let linkKey       = await shortenLink(link, expiry);
-		linkKey           = linkKey['linkKey'];
+		let linkKey = await shortenLink(link, expiry);
+		linkKey = linkKey['linkKey'];
 		let shortenedLink = "https://l.sbond.co/?k=" + linkKey;
 		
 		// Display link and svg
@@ -97,11 +103,17 @@ async function getShortened() {
 document.getElementById("shortenBtn").onclick = getShortened;
 
 document.getElementById("linkGenerated").addEventListener("mouseover", () => {
-  document.getElementById("clickToCopyWrapper").style.opacity = 1;
-  document.getElementById("clickToCopyWrapper").style.top = "-33px";
+  clickToCopyWrapper.style.opacity = 1;
+  clickToCopyWrapper.style.top = "-33px";
 });
 
-document.getElementById("linkGenerated").addEventListener("mouseout", () => {
-  document.getElementById("clickToCopyWrapper").style.opacity = 0;
-  document.getElementById("clickToCopyWrapper").style.top = "-28px";
+document.getElementById("linkGenerated").addEventListener("mouseout", async () => {
+  clickToCopyWrapper.style.opacity = 0;
+  clickToCopyWrapper.style.top = "-28px";
+
+  // Wait until after transition on above styling
+  await new Promise(r => setTimeout(r, 250));
+
+  // Reset text in clickToCopy element
+  clickToCopy.innerHTML = "click to copy";
 });

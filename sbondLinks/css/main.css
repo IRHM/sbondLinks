@@ -128,10 +128,10 @@ select:valid {
   display: flex;
   align-items: center;
   flex-flow: column;
-  padding-right: 8px;
 }
 
 .clickToCopyWrapper {
+  display: flex;
   position: relative;
   top: -28px;
   left: -55px;
