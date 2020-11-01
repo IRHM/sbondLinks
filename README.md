@@ -1,6 +1,10 @@
 # sbondLinks
 
-A simple link shortening site made with PHP/JS.
+<p align="center">
+  <img src="https://l.sbond.co/img/icon.svg" alt="logo" />
+</p>
+
+<h4 align="center">The only Super Duper Complex Hyperlink Abbreviator™ for you.</h4>
 
 ## Setup
 
